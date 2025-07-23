@@ -1,63 +1,82 @@
-# 🏥  Insurance-Charges-Analysis-Pipeline
-A complete preprocessing pipeline for health insurance cost prediction. Includes EDA, data cleaning, feature engineering, feature extraction, and statistical testing to prepare data for machine learning models.
+# Insurance-Charges-Analysis-Pipeline
+
+This project performs a complete **end-to-end analysis pipeline** on a medical insurance dataset to predict the **insurance charges** based on personal attributes such as age, BMI, smoking status, etc.
+
+## 📊 Project Objective
+
+To explore and analyze the medical insurance dataset, engineer meaningful features, perform statistical analysis, and build a regression model to **predict medical charges** accurately.
+
+---
+
+## ⚙️ Tech Stack Used
+
+| Category         | Tools & Libraries                                |
+|------------------|--------------------------------------------------|
+| Programming      | Python                                           |
+| Data Handling    | pandas, numpy                                    |
+| Data Visualization | seaborn, matplotlib                            |
+| Statistical Analysis | scipy (Pearson & Chi-square tests)          |
+| Machine Learning | scikit-learn (Linear Regression, train_test_split) |
+| Preprocessing    | StandardScaler, OneHotEncoding (via pandas)     |
+| Environment      | Google Colab                  |
+
+---
 
 
 ## 📁 Dataset
 
-- **Source**: `insurance.csv` (Kaggle)
-- **Rows**: 1,338
-- **Columns**:
-  - `age`: Age of primary beneficiary
-  - `sex`: Gender of the person (male/female)
+- **File:** `insurance.csv`
+- **Rows:** 1338
+- **Columns:** 7
+- **Features:**
+  - `age`: Age of the person
+  - `sex`: Gender (male/female)
   - `bmi`: Body Mass Index
-  - `children`: Number of children covered by health insurance
+  - `children`: Number of children/dependents
   - `smoker`: Smoking status (yes/no)
-  - `region`: Residential region in the US
-  - `charges`: Individual medical costs billed by health insurance
+  - `region`: Residential region
+  - `charges`: Medical insurance charges (target variable)
 
 ---
 
-## 🧪 Project Workflow
+## 🔧 Project Workflow
 
-### 1. 📊 Exploratory Data Analysis (EDA)
-- Histograms and boxplots for numeric features
-- Count plots for categorical features
-- Heatmap for correlation between numerical variables
+### 1. Exploratory Data Analysis (EDA)
+- Univariate and multivariate visualizations
+- Outlier detection using boxplots
+- Correlation heatmap
 
-### 2. 🧹 Data Cleaning
-- Removed duplicates
-- Checked for missing values (none found)
+### 2. Data Cleaning
+- Handled duplicates
+- Verified missing values
+- Converted categorical variables (`sex`, `smoker`, `region`) to numerical formats
 
-### 3. 🛠️ Feature Engineering
-- Encoded:
-  - `sex` → `is_female`
-  - `smoker` → `is_smoker`
-  - `region` → one-hot encoding
-- Created `bmi_category` from BMI values:
-  - Underweight, Normal, Overweight, Obese
-- Standardized numeric features (`age`, `bmi`, `children`) using `StandardScaler`
+### 3. Feature Engineering
+- Created `bmi_category` (Underweight, Normal, Overweight, Obese)
+- One-hot encoded categorical variables
+- Standardized numerical features: `age`, `bmi`, `children`
 
-### 4. 📈 Statistical Testing
-- **Pearson correlation** with `charges` to assess linear relationships
-- **Chi-squared tests** for categorical variables to determine statistical significance with `charges`
+### 4. Statistical Analysis
+- **Pearson Correlation** to assess linear relationships with `charges`
+- **Chi-Square Test** for categorical feature relevance
 
-### 5. 📦 Final Feature Selection
-Selected features based on statistical relevance:
-- `age`
-- `is_female`
-- `bmi`
-- `children`
-- `is_smoker`
-- `region_southeast`
-- `bmi_category_Obese`
-- Target variable: `charges`
+### 5. Model Building
+- Used **Linear Regression** from `scikit-learn`
+- Split data into training and test sets (80/20)
+- Evaluated using **R²** and **Adjusted R²**
+
+### 6. Final Features Used
+- `age`, `is_female`, `bmi`, `children`, `is_smoker`, `region_southeast`, `bmi_category_Obese`
 
 ---
 
-## 🔧 Tech Stack
+## 📈 Results
 
-- **Python**
-- **Pandas**, **NumPy**
-- **Matplotlib**, **Seaborn**
-- **SciKit-Learn**, **SciPy**
+- **R² Score**: ~0.80
+- **Adjusted R² Score**: ~0.7988
+
+This indicates a **strong predictive model** that explains ~80% of the variance in insurance charges.
+
+---
+
 
